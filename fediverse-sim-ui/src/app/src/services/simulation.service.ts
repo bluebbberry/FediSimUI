@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { FediverseState } from '../model/fediverse-state';
+import { Server } from '../model/server';
 
 interface FediverseHistory {
   // Add properties from your FediverseHistory model
@@ -27,24 +29,15 @@ export class SimulationService {
   }
 
   createSimulation(): Observable<any> {
-    const body = {
-      "servers": [
-          {
-              "name": "lemmy",
-              "usersPerMonth": 3000
-          },
-          {
-            "name": "mastodon",
-            "usersPerMonth": 1000000
-          }
-      ],
-      "year": 1000
-    };
+    const fediverseState: FediverseState = new FediverseState(2024, [
+      new Server("lemmy", 3000),
+      new Server("mastodon", 1000000)
+    ]);
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-    return this.http.post<any>(`${this.apiUrl}/create`, body, {headers: headers});
+    return this.http.post<any>(`${this.apiUrl}/create`, fediverseState, {headers: headers});
   }
 }

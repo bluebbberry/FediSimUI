@@ -1,26 +1,5 @@
 <h1>Simulation Data</h1>
 
-<table>
-  <thead>
-  <tr>
-    <th>Year</th>
-    <th>Servers</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let state of allStates">
-    <td>{{ state.year }}</td>
-    <td>
-      <ul>
-        <li *ngFor="let server of state.servers">
-          {{ server.name }} ({{ server.usersPerMonth }} users/month)
-        </li>
-      </ul>
-    </td>
-  </tr>
-  </tbody>
-</table>
-
 <div>
   <button (click)="createSimulation()">Create Simulation</button>
   <button *ngIf="selectedSimulationId" (click)="startSimulation()">Start Simulation</button>
