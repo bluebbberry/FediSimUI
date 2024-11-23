@@ -33,6 +33,10 @@ export class SimulationService {
       "year": 1000
     };
 
-    return this.http.post(`${this.apiUrl}/create`, body);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<any>(`${this.apiUrl}/create`, body, {headers: headers});
   }
 }

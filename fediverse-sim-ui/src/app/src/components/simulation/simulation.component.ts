@@ -27,7 +27,7 @@ export class SimulationComponent implements OnInit {
 
   createSimulation() {
     this.simulationService.createSimulation().subscribe(
-      (response: any) => this.selectedSimulationId = response,
+      (response: any) => this.selectedSimulationId = response["id"],
       (error: any) => console.error('Error starting simulation:', error)
     );
   }
