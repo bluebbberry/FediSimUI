@@ -10,7 +10,7 @@ interface FediverseHistory {
   providedIn: 'root'
 })
 export class SimulationService {
-  private apiUrl = '/api/simulations';
+  private apiUrl = 'http://localhost:30001/api/simulations';
 
   constructor(private http: HttpClient) {}
 
@@ -20,5 +20,11 @@ export class SimulationService {
 
   startSimulation(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/start/${id}`);
+  }
+
+  createSimulation(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/create`, {
+      "hello": "test"
+    });
   }
 }

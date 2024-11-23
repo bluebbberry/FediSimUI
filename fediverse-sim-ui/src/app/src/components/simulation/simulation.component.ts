@@ -25,6 +25,13 @@ export class SimulationComponent implements OnInit {
     // Fetch initial data (you might want to implement this based on your backend)
   }
 
+  createSimulation() {
+    this.simulationService.createSimulation().subscribe(
+      (response: any) => this.selectedSimulationId = response,
+      (error: any) => console.error('Error starting simulation:', error)
+    );
+  }
+
   startSimulation() {
     if (this.selectedSimulationId) {
       this.simulationService.startSimulation(this.selectedSimulationId).subscribe(
