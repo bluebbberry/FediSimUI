@@ -38,6 +38,19 @@ export class SimulationComponent implements OnInit {
         (response: any) => console.log('Simulation started successfully'),
         (error: any) => console.error('Error starting simulation:', error)
       );
+    } else {
+      console.error("Simulation id is not set. No simulation created");
+    }
+  }
+
+  getSimulation() {
+    if (this.selectedSimulationId) {
+      this.simulationService.getSimulation(this.selectedSimulationId).subscribe(
+        (response: any) => console.log('Received simulation data: ' + JSON.stringify(response["simulation"])),
+        (error: any) => console.error('Error starting simulation:', error)
+      );
+    } else {
+      console.error("Simulation id not set. No simulation created");
     }
   }
 }

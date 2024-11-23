@@ -23,6 +23,7 @@
 
 <button (click)="createSimulation()">Create Simulation</button>
 <button *ngIf="selectedSimulationId" (click)="startSimulation()">Start Simulation</button>
+<button *ngIf="selectedSimulationId" (click)="getSimulation()">Show Simulatio resultn</button>
 
 <!--<select [(ngModel)]="selectedSimulationId" name="simulationSelect">
   <option value="">Select Simulation</option>

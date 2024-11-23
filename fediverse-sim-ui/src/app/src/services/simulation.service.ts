@@ -15,7 +15,11 @@ export class SimulationService {
   constructor(private http: HttpClient) {}
 
   getSimulation(id: string): Observable<FediverseHistory> {
-    return this.http.get<FediverseHistory>(`${this.apiUrl}/${id}`);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<FediverseHistory>(`${this.apiUrl}/${id}`, {headers: headers});
   }
 
   startSimulation(id: string): Observable<any> {
