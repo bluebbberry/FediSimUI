@@ -32,6 +32,10 @@ export class SimulationService {
           {
               "name": "lemmy",
               "usersPerMonth": 3000
+          },
+          {
+            "name": "mastodon",
+            "usersPerMonth": 1000000
           }
       ],
       "year": 1000

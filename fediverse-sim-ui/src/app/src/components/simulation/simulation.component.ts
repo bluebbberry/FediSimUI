@@ -18,6 +18,7 @@ interface FediverseState {
 export class SimulationComponent implements OnInit {
   allStates: FediverseState[] = [];
   selectedSimulationId?: string;
+  resultTextarea?: string;
 
   constructor(private simulationService: SimulationService) {}
 
@@ -46,7 +47,10 @@ export class SimulationComponent implements OnInit {
   getSimulation() {
     if (this.selectedSimulationId) {
       this.simulationService.getSimulation(this.selectedSimulationId).subscribe(
-        (response: any) => console.log('Received simulation data: ' + JSON.stringify(response["simulation"])),
+        (response: any) => {
+          console.log('Received simulation data: ' + JSON.stringify(response["simulation"]));
+          this.resultTextarea = JSON.stringify(response["simulation"]);
+        },
         (error: any) => console.error('Error starting simulation:', error)
       );
     } else {
