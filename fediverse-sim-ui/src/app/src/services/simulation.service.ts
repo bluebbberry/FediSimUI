@@ -23,8 +23,16 @@ export class SimulationService {
   }
 
   createSimulation(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/create`, {
-      "hello": "test"
-    });
+    const body = {
+      "servers": [
+          {
+              "name": "lemmy",
+              "usersPerMonth": 3000
+          }
+      ],
+      "year": 1000
+    };
+
+    return this.http.post(`${this.apiUrl}/create`, body);
   }
 }
