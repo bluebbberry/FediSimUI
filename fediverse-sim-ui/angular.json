@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "fediverse-sim-ui:build:production"
+              "buildTarget": "fediverse-sim-ui:build:production"
             },
             "development": {
-              "browserTarget": "fediverse-sim-ui:build:development"
+              "buildTarget": "fediverse-sim-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fediverse-sim-ui:build"
+            "buildTarget": "fediverse-sim-ui:build"
           }
         },
         "test": {
