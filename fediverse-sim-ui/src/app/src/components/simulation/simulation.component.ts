@@ -20,27 +20,26 @@ export class SimulationComponent implements OnInit {
   ngOnInit() {
     // Fetch initial data (you might want to implement this based on your backend)
   }
+  
+  addServer() {
+    this.fediverseState.servers!.push(new Server());
+  }
 
-  createSimulation() {
-    const fediverseState: FediverseState = new FediverseState(this.fediverseState.year, [
-      new Server("lemmy", 3000),
-      new Server("mastodon", 1000000)
-    ]);
-    this.simulationService.createSimulation(fediverseState).subscribe(
-      (response: any) => this.selectedSimulationId = response["id"],
+  startSimulation() {
+    this.simulationService.createSimulation(this.fediverseState).subscribe(
+      (response: any) => {
+        this.selectedSimulationId = response["id"];
+        this.onCreatedSimulation();
+      },
       (error: any) => console.error('Error starting simulation:', error)
     );
   }
 
-  startSimulation() {
-    if (this.selectedSimulationId) {
-      this.simulationService.startSimulation(this.selectedSimulationId).subscribe(
-        (response: any) => console.log('Simulation started successfully'),
-        (error: any) => console.error('Error starting simulation:', error)
-      );
-    } else {
-      console.error("Simulation id is not set. No simulation created");
-    }
+  onCreatedSimulation() {
+    this.simulationService.startSimulation(this.selectedSimulationId!).subscribe(
+      (response: any) => console.log('Simulation started successfully'),
+      (error: any) => console.error('Error starting simulation:', error)
+    );
   }
 
   getSimulation() {

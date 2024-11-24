@@ -1,10 +1,25 @@
 <h1>Simulation Data</h1>
 
-Simulation year: <input type="number" [(ngModel)]="fediverseState.year" />
+<div>
+  <label>Simulation year:&nbsp;</label>
+  <input type="number" [(ngModel)]="fediverseState.year" />
+</div>
 
 <div>
-  <button (click)="createSimulation()">Create Simulation</button>
-  <button *ngIf="selectedSimulationId" (click)="startSimulation()">Start Simulation</button>
+  <label for="servers">Servers:</label>
+  <div *ngFor="let server of fediverseState.servers; let index = index">
+    <input type="text" [(ngModel)]="server.name" name="serverName{{index}}">
+    <input type="number" [(ngModel)]="server.usersPerMonth" name="usersPerMonth{{index}}">
+  </div>
+  <div>
+    <button type="button" (click)="addServer()">Add</button>
+  </div>
+</div>
+
+<br>
+
+<div>
+  <button (click)="startSimulation()">Start Simulation</button>
   <button *ngIf="selectedSimulationId" (click)="getSimulation()">Show Simulatio resultn</button>  
 </div>
 

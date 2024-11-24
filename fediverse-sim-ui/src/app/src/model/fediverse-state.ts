@@ -7,5 +7,6 @@ export class FediverseState {
     constructor(year?: number, servers?: Array<any>) {
         if (year) this.year = year;
         if (servers) this.servers = servers;
+        else this.servers = [];
     }
 }
