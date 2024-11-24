@@ -38,17 +38,29 @@ export class SimulationComponent implements OnInit {
 
   onCreatedSimulation() {
     this.simulationService.startSimulation(this.selectedSimulationId!).subscribe(
-      (response: any) => console.log('Simulation started successfully'),
+      (response: any) => {
+        console.log('Simulation started successfully');
+        this.onStartedSimulation();
+      },
       (error: any) => console.error('Error starting simulation:', error)
     );
   }
 
-  getSimulation() {
+  onStartedSimulation() {
+    const intervallId = setInterval(() => {
+      this.getSimulation((response: FediverseHistory) => {
+        this.fediverseHistoryResult = response;
+        clearInterval(intervallId);
+      });
+    }, 2000);
+  }
+
+  getSimulation(onSuccess: any) {
     if (this.selectedSimulationId) {
       this.simulationService.getSimulation(this.selectedSimulationId).subscribe(
         (response: FediverseHistory) => {
           console.log('Received simulation data: ' + JSON.stringify(response));
-          this.fediverseHistoryResult = response;
+          onSuccess(response);
         },
         (error: any) => console.error('Error starting simulation:', error)
       );
