@@ -4,6 +4,27 @@ import { FediverseState } from '../../model/fediverse-state';
 import { Server } from '../../model/server';
 import { FediverseHistory } from '../../model/fediverse-history';
 
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexDataLabels,
+  ApexTitleSubtitle,
+  ApexStroke,
+  ApexGrid
+} from "ng-apexcharts";
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  dataLabels: ApexDataLabels;
+  grid: ApexGrid;
+  stroke: ApexStroke;
+  title: ApexTitleSubtitle;
+};
+
 @Component({
   selector: 'app-simulation',
   templateUrl: './simulation.component.html',
