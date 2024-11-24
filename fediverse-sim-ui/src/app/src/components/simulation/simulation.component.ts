@@ -1,29 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { SimulationService } from '../../services/simulation.service';
 import { FediverseState } from '../../model/fediverse-state';
 import { Server } from '../../model/server';
 import { FediverseHistory } from '../../model/fediverse-history';
-
-import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexDataLabels,
-  ApexTitleSubtitle,
-  ApexStroke,
-  ApexGrid
-} from "ng-apexcharts";
-
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  dataLabels: ApexDataLabels;
-  grid: ApexGrid;
-  stroke: ApexStroke;
-  title: ApexTitleSubtitle;
-};
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-simulation',
