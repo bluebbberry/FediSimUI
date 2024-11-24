@@ -1,5 +1,7 @@
 <h1>Simulation Data</h1>
 
+Simulation year: <input type="number" [(ngModel)]="fediverseState.year" />
+
 <div>
   <button (click)="createSimulation()">Create Simulation</button>
   <button *ngIf="selectedSimulationId" (click)="startSimulation()">Start Simulation</button>

@@ -28,12 +28,7 @@ export class SimulationService {
     return this.http.get(`${this.apiUrl}/start/${id}`);
   }
 
-  createSimulation(): Observable<any> {
-    const fediverseState: FediverseState = new FediverseState(2024, [
-      new Server("lemmy", 3000),
-      new Server("mastodon", 1000000)
-    ]);
-
+  createSimulation(fediverseState: FediverseState): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });

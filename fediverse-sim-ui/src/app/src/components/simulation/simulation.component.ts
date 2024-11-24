@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SimulationService } from '../../services/simulation.service';
+import { FediverseState } from '../../model/fediverse-state';
+import { Server } from '../../model/server';
 
 @Component({
   selector: 'app-simulation',
@@ -9,15 +11,22 @@ import { SimulationService } from '../../services/simulation.service';
 export class SimulationComponent implements OnInit {
   selectedSimulationId?: string;
   resultTextarea?: string;
+  fediverseState: FediverseState;
 
-  constructor(private simulationService: SimulationService) {}
+  constructor(private simulationService: SimulationService) {
+    this.fediverseState = new FediverseState();
+  }
 
   ngOnInit() {
     // Fetch initial data (you might want to implement this based on your backend)
   }
 
   createSimulation() {
-    this.simulationService.createSimulation().subscribe(
+    const fediverseState: FediverseState = new FediverseState(this.fediverseState.year, [
+      new Server("lemmy", 3000),
+      new Server("mastodon", 1000000)
+    ]);
+    this.simulationService.createSimulation(fediverseState).subscribe(
       (response: any) => this.selectedSimulationId = response["id"],
       (error: any) => console.error('Error starting simulation:', error)
     );
