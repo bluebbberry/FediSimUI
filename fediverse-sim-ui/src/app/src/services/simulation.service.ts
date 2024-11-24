@@ -16,6 +16,14 @@ export class SimulationService {
 
   constructor(private http: HttpClient) {}
 
+  createSimulation(fediverseState: FediverseState): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<any>(`${this.apiUrl}/create`, fediverseState, {headers: headers});
+  }
+
   getSimulation(id: string): Observable<FediverseHistory> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -26,13 +34,5 @@ export class SimulationService {
 
   startSimulation(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/start/${id}`);
-  }
-
-  createSimulation(fediverseState: FediverseState): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
-    return this.http.post<any>(`${this.apiUrl}/create`, fediverseState, {headers: headers});
   }
 }
