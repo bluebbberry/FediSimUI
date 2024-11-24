@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SimulationService } from '../../services/simulation.service';
 import { FediverseState } from '../../model/fediverse-state';
 import { Server } from '../../model/server';
+import { FediverseHistory } from '../../model/fediverse-history';
 
 @Component({
   selector: 'app-simulation',
@@ -10,7 +11,7 @@ import { Server } from '../../model/server';
 })
 export class SimulationComponent implements OnInit {
   selectedSimulationId?: string;
-  resultTextarea?: string;
+  fediverseHistoryResult?: FediverseHistory;
   fediverseState: FediverseState;
 
   constructor(private simulationService: SimulationService) {
@@ -45,9 +46,9 @@ export class SimulationComponent implements OnInit {
   getSimulation() {
     if (this.selectedSimulationId) {
       this.simulationService.getSimulation(this.selectedSimulationId).subscribe(
-        (response: any) => {
-          console.log('Received simulation data: ' + JSON.stringify(response["simulation"]));
-          this.resultTextarea = JSON.stringify(response["simulation"]);
+        (response: FediverseHistory) => {
+          console.log('Received simulation data: ' + JSON.stringify(response));
+          this.fediverseHistoryResult = response;
         },
         (error: any) => console.error('Error starting simulation:', error)
       );
