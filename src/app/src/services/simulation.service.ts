@@ -2,11 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FediverseState } from '../model/fediverse-state';
-import { Server } from '../model/server';
-
-interface FediverseHistory {
-  // Add properties from your FediverseHistory model
-}
+import { FediverseHistory } from '../model/fediverse-history';
 
 @Injectable({
   providedIn: 'root'
