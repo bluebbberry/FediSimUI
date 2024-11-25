@@ -6,14 +6,14 @@
     <div class="card-body">
       <div class="form-group">
         <label for="year">Simulation year:</label>
-        <input type="number" [(ngModel)]="fediverseState.year" class="form-control" id="year">
+        <!--<input type="number" [(ngModel)]="fediverseState.year" class="form-control" id="year">-->
       </div>
-
+<!--
       <div class="form-group">
         <label for="servers">Servers:</label>
         <div *ngFor="let server of fediverseState.servers; let index = index">
           <div class="row">
-            <div class="col-md-6">
+             <div class="col-md-6">
               <input type="text" [(ngModel)]="server.name" class="form-control" id="serverName{{index}}" placeholder="Server Name">
             </div>
             <div class="col-md-6">
@@ -22,7 +22,7 @@
           </div>
         </div>
       </div>
-
+    -->
       <button class="btn btn-primary mt-3" (click)="addServer()">Add Server</button>
 
       <br><br>
@@ -31,7 +31,7 @@
         <button class="btn btn-primary mr-2" (click)="startSimulation()">Start Simulation</button>
       </div>
 
-      <div class="form-group">
+      <!--<div class="form-group">
         <label for="servers">Result:</label>
         <div *ngFor="let fediverseState of fediverseHistoryResult?.fediverseStates; let index = index">
           <div>
@@ -48,7 +48,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </div>
