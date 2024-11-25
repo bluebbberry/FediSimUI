@@ -3,12 +3,15 @@ import { FediverseState } from '../../model/fediverse-state';
 import { Server } from '../../model/server';
 import { FediverseHistory } from '../../model/fediverse-history';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-simulation',
   templateUrl: './simulation.component.html',
   styleUrls: ['./simulation.component.scss'],
   standalone: true,
+  imports: [FormsModule, NgForOf]
 })
 export class SimulationComponent implements OnInit {
   selectedSimulationId?: string;
