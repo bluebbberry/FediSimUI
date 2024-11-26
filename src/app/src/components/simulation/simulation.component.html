@@ -37,24 +37,39 @@
 
       <br>
 
-      <div class="form-group" *ngIf="fediverseHistoryResult">
-        <h3 for="servers">Result:</h3>
-        <div *ngFor="let fediverseState of fediverseHistoryResult?.fediverseStates; let index = index">
-          <div>
-            <input type="number" [(ngModel)]="fediverseState.year" />
-          </div>
-          <div *ngFor="let server of fediverseState.servers;">
+      <div class="card shadow mb-4" *ngIf="fediverseHistoryResult">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Fediverse History Analysis</h6>
+        </div>
+        <div class="card-body">
+          <div *ngFor="let fediverseState of fediverseHistoryResult?.fediverseStates; let index = index">
             <div class="row">
-              <div class="col-md-6">
-                <input type="text" [(ngModel)]="server.name" class="form-control" />
-              </div>
-              <div class="col-md-6">
-                <input type="text" [(ngModel)]="server.usersPerMonth" class="form-control" />
+              <div class="col-md-12">
+                <h5>Jahr&nbsp;{{ fediverseState.year }}</h5>
               </div>
             </div>
+            <div *ngFor="let server of fediverseState.servers;">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="serverName">Server Name:&nbsp;</label>
+                    <span id="serverName">{{ server.name }}</span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="usersPerMonth">Users Per Month:&nbsp;</label>
+                    <span id="usersPerMonth">{{ server.usersPerMonth }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
           </div>
         </div>
       </div>
+      
+      
     </div>
   </div>
 </div>
