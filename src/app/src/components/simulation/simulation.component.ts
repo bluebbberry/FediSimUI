@@ -4,19 +4,20 @@ import { Server } from '../../model/server';
 import { FediverseHistory } from '../../model/fediverse-history';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-simulation',
   templateUrl: './simulation.component.html',
   styleUrls: ['./simulation.component.scss'],
   standalone: true,
-  imports: [FormsModule, NgForOf]
+  imports: [FormsModule, NgForOf, NgIf]
 })
 export class SimulationComponent implements OnInit {
   selectedSimulationId?: string;
   fediverseHistoryResult?: FediverseHistory;
   fediverseState: FediverseState;
+  isLoadingSimulationResult: boolean = false;
 
   constructor(private simulationService: SimulationService) {
     this.fediverseState = new FediverseState();
@@ -33,6 +34,7 @@ export class SimulationComponent implements OnInit {
   startSimulation() {
     this.simulationService.createSimulation(this.fediverseState).subscribe(
       (response: any) => {
+        this.isLoadingSimulationResult = true;
         this.selectedSimulationId = response["id"];
         this.onCreatedSimulation();
       },
@@ -64,6 +66,7 @@ export class SimulationComponent implements OnInit {
       this.simulationService.getSimulation(this.selectedSimulationId).subscribe(
         (response: FediverseHistory) => {
           console.log('Received simulation data: ' + JSON.stringify(response));
+          this.isLoadingSimulationResult = false;
           onSuccess(response);
         },
         (error: any) => console.error('Error starting simulation:', error)
