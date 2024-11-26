@@ -3,6 +3,7 @@
     <div class="card-header">
       <h1>FediSim</h1>
     </div>
+
     <div class="card-body">
       <div class="form-group">
         <h3 for="year">Simulation year:</h3>
@@ -39,7 +40,7 @@
 
       <div class="card shadow mb-4" *ngIf="fediverseHistoryResult">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Fediverse History Analysis</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Simulation of Fediverse History</h6>
         </div>
         <div class="card-body">
           <div *ngFor="let fediverseState of fediverseHistoryResult?.fediverseStates; let index = index">
