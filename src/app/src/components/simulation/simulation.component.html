@@ -2,18 +2,19 @@
   <div class="card">
     <div class="card-header">
       <h1>FediSim</h1>
+      <h4>Simulate your own Fediverse</h4>
     </div>
 
     <div class="card-body">
       <div class="form-group">
-        <h3 for="year">Simulation year:</h3>
+        <h5 for="year">Start year:</h5>
         <input type="number" [(ngModel)]="fediverseState.year" class="form-control" id="year">
       </div>
 
       <br>
 
       <div class="form-group">
-        <h3 for="servers">Servers:</h3>
+        <h5 for="servers">Servers:</h5>
         <div *ngFor="let server of fediverseState.servers; let index = index">
           <div class="row">
              <div class="col-md-6">
@@ -24,23 +25,26 @@
             </div>
           </div>
         </div>
+        <button class="btn btn-secondary mt-3" (click)="addServer()">Add Server</button>
       </div>
-      <button class="btn btn-secondary mt-3" (click)="addServer()">Add Server</button>
 
       <br><br>
 
       <div class="mt-3">
-        <button class="btn btn-primary mr-2" (click)="startSimulation()" *ngIf="!isLoadingSimulationResult">Start Simulation</button>
+        <button class="btn btn-primary mr-2" (click)="startSimulation()" style="float: right;" *ngIf="!isLoadingSimulationResult">Start</button>
       </div>
-      <div *ngIf="isLoadingSimulationResult">
+      <div *ngIf="isLoadingSimulationResult" style="float: right;">
         Loading ...
       </div>
 
       <br>
+      <br>
+      <hr>
+      <br>
 
       <div class="card shadow mb-4" *ngIf="fediverseHistoryResult">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Simulation of Fediverse History</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Fediverse History Simulation</h6>
         </div>
         <div class="card-body">
           <div *ngFor="let fediverseState of fediverseHistoryResult?.fediverseStates; let index = index">
@@ -69,8 +73,6 @@
           </div>
         </div>
       </div>
-      
-      
     </div>
   </div>
 </div>
