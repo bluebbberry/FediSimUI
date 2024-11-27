@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FediverseState } from '../model/fediverse-state';
 import { FediverseHistory } from '../model/fediverse-history';
+import { Simulation } from '../model/simulation';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,12 @@ export class SimulationService {
 
   constructor(private http: HttpClient) {}
 
-  createSimulation(fediverseState: FediverseState): Observable<any> {
+  createSimulation(simulation: Simulation): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-    return this.http.post<any>(`${this.apiUrl}/create`, fediverseState, {headers: headers});
+    return this.http.post<any>(`${this.apiUrl}/create`, simulation, {headers: headers});
   }
 
   getSimulation(id: string): Observable<FediverseHistory> {

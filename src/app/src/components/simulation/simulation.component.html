@@ -8,14 +8,22 @@
     <div class="card-body">
       <div class="form-group">
         <h5 for="year">Start year:</h5>
-        <input type="number" [(ngModel)]="fediverseState.year" class="form-control" id="year">
+        <input type="number" [(ngModel)]="startState.year" class="form-control" id="year">
+      </div>
+      <div class="form-group">
+        <h5 for="year">Duration:</h5>
+        <input type="number" [(ngModel)]="simulation.duration" class="form-control" id="year">
+      </div>
+      <div class="form-group">
+        <h5 for="year">Simulation-Type:</h5>
+        <input type="string" [(ngModel)]="simulation.type" class="form-control" id="year">
       </div>
 
       <br>
 
       <div class="form-group">
         <h5 for="servers">Servers:</h5>
-        <div *ngFor="let server of fediverseState.servers; let index = index">
+        <div *ngFor="let server of startState.servers; let index = index">
           <div class="row">
              <div class="col-md-6">
               <input type="text" [(ngModel)]="server.name" class="form-control" id="serverName{{index}}" placeholder="Server Name">
@@ -50,7 +58,7 @@
           <div *ngFor="let fediverseState of fediverseHistoryResult?.fediverseStates; let index = index">
             <div class="row">
               <div class="col-md-12">
-                <h5>Jahr&nbsp;{{ fediverseState.year }}</h5>
+                <h5>Year&nbsp;{{ fediverseState.year }}</h5>
               </div>
             </div>
             <div *ngFor="let server of fediverseState.servers;">

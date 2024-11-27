@@ -5,6 +5,7 @@ import { FediverseHistory } from '../../model/fediverse-history';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgForOf, NgIf } from '@angular/common';
+import { Simulation } from '../../model/simulation';
 
 @Component({
   selector: 'app-simulation',
@@ -16,11 +17,14 @@ import { NgForOf, NgIf } from '@angular/common';
 export class SimulationComponent implements OnInit {
   selectedSimulationId?: string;
   fediverseHistoryResult?: FediverseHistory;
-  fediverseState: FediverseState;
+  simulation: Simulation;
+  startState: FediverseState;
   isLoadingSimulationResult: boolean = false;
 
   constructor(private simulationService: SimulationService) {
-    this.fediverseState = new FediverseState();
+    this.simulation = new Simulation();
+    this.startState = new FediverseState();
+    this.simulation.startState = this.startState;
   }
 
   ngOnInit() {
@@ -28,11 +32,11 @@ export class SimulationComponent implements OnInit {
   }
   
   addServer() {
-    this.fediverseState.servers!.push(new Server());
+    this.simulation.startState!.servers!.push(new Server());
   }
 
   startSimulation() {
-    this.simulationService.createSimulation(this.fediverseState).subscribe(
+    this.simulationService.createSimulation(this.simulation).subscribe(
       (response: any) => {
         this.isLoadingSimulationResult = true;
         this.selectedSimulationId = response["id"];
