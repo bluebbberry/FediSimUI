@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { FediverseState } from '../model/fediverse-state';
 import { FediverseHistory } from '../model/fediverse-history';
 import { Simulation } from '../model/simulation';
@@ -31,5 +31,19 @@ export class SimulationService {
 
   startSimulation(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/start/${id}`);
+  }
+
+  getAllSimulationTypes(): Observable<string[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<string[]>(`${this.apiUrl}/types`, {headers: headers})
+      .pipe(map(response=> {
+        if(response){
+          return Object.values(response); //This will return the array of object values.
+        }
+        return []; // If response is null return empty array for safety.
+    }));
   }
 }

@@ -20,6 +20,8 @@ export class SimulationComponent implements OnInit {
   simulation: Simulation;
   startState: FediverseState;
   isLoadingSimulationResult: boolean = false;
+  availableSimulationTypes?: string[];
+  selectedSimulationType?: string;
 
   constructor(private simulationService: SimulationService) {
     this.simulation = new Simulation();
@@ -28,7 +30,11 @@ export class SimulationComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Fetch initial data (you might want to implement this based on your backend)
+    this.simulationService.getAllSimulationTypes().subscribe((response: string[]) => {
+      this.availableSimulationTypes = response;
+    }, (error: any) => {
+      console.error('Error starting simulation:', error);
+    });
   }
   
   addServer() {
@@ -36,6 +42,7 @@ export class SimulationComponent implements OnInit {
   }
 
   startSimulation() {
+    this.simulation.type = this.selectedSimulationType;
     this.simulationService.createSimulation(this.simulation).subscribe(
       (response: any) => {
         this.isLoadingSimulationResult = true;

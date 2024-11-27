@@ -15,8 +15,10 @@
         <input type="number" [(ngModel)]="simulation.duration" class="form-control" id="year">
       </div>
       <div class="form-group">
-        <h5 for="year">Simulation-Type:</h5>
-        <input type="string" [(ngModel)]="simulation.type" class="form-control" id="year">
+        <h5 for="simulationType">Simulation-Type:</h5>
+        <select class="form-control" id="simulationType" [(ngModel)]="selectedSimulationType">
+          <option *ngFor="let type of availableSimulationTypes" [value]="type">{{ type }}</option>
+        </select>
       </div>
 
       <br>
@@ -52,7 +54,7 @@
 
       <div class="card shadow mb-4" *ngIf="fediverseHistoryResult">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Fediverse History Simulation</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Simulation Result</h6>
         </div>
         <div class="card-body">
           <div *ngFor="let fediverseState of fediverseHistoryResult?.fediverseStates; let index = index">
